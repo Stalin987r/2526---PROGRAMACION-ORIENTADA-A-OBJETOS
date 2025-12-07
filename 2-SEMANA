@@ -1,0 +1,39 @@
+# Abstracción: clase general que representa un vehículo sin detalles específicos
+class Vehiculo:
+    def __init__(self, marca, modelo):
+        # Encapsulación: atributos privados (no accesibles directamente desde fuera)
+        self.__marca = marca
+        self.__modelo = modelo
+
+    # Método público para acceder a la información encapsulada
+    def obtener_info(self):
+        return f"{self.__marca} {self.__modelo}"
+
+    # Método que será sobreescrito por las clases hijas (polimorfismo)
+    def acelerar(self):
+        pass
+
+
+# Herencia: Auto hereda de la clase Vehiculo
+class Auto(Vehiculo):
+    # Polimorfismo: redefinimos acelerar() de manera específica para un auto
+    def acelerar(self):
+        return "El auto acelera suavemente."
+
+
+# Herencia: Moto hereda de la clase Vehiculo
+class Moto(Vehiculo):
+    # Polimorfismo: redefinimos acelerar() de manera diferente a Auto
+    def acelerar(self):
+        return "La moto acelera rápidamente con un sonido fuerte."
+
+
+# Lista que contiene diferentes objetos de clases hijas
+vehiculos = [
+    Auto("Toyota", "Corolla"),
+    Moto("Yamaha", "MT-07")
+]
+
+# Polimorfismo en acción: cada objeto responde según su propia implementación
+for v in vehiculos:
+    print(v.obtener_info(), "-", v.acelerar())

@@ -1,39 +1,41 @@
-# Abstracción: clase general que representa un vehículo sin detalles específicos
+# Abstracción: clase general que representa un vehículo
 class Vehiculo:
     def __init__(self, marca, modelo):
-        # Encapsulación: atributos privados (no accesibles directamente desde fuera)
+        # Encapsulación: atributos privados que no pueden ser modificados desde fuera de la clase
         self.__marca = marca
         self.__modelo = modelo
 
-    # Método público para acceder a la información encapsulada
+    # Método público que permite acceder a la información del vehículo
     def obtener_info(self):
         return f"{self.__marca} {self.__modelo}"
 
-    # Método que será sobreescrito por las clases hijas (polimorfismo)
+    # Método genérico que será redefinido por las clases hijas (polimorfismo)
     def acelerar(self):
         pass
 
 
-# Herencia: Auto hereda de la clase Vehiculo
+# Herencia: Auto hereda características de la clase Vehiculo
 class Auto(Vehiculo):
-    # Polimorfismo: redefinimos acelerar() de manera específica para un auto
+    # Polimorfismo: el método acelerar se comporta distinto para un auto
     def acelerar(self):
         return "El auto acelera suavemente."
 
 
-# Herencia: Moto hereda de la clase Vehiculo
+# Herencia: Moto también hereda de Vehiculo
 class Moto(Vehiculo):
-    # Polimorfismo: redefinimos acelerar() de manera diferente a Auto
+    # Polimorfismo: redefinición del método acelerar para una moto
     def acelerar(self):
         return "La moto acelera rápidamente con un sonido fuerte."
 
 
-# Lista que contiene diferentes objetos de clases hijas
+# Lista con diferentes vehículos usando clases hijas
 vehiculos = [
-    Auto("Toyota", "Corolla"),
-    Moto("Yamaha", "MT-07")
+    Auto("Toyota", "Corolla"),   # Objeto de tipo Auto
+    Moto("Yamaha", "MT-07")      # Objeto de tipo Moto
 ]
 
-# Polimorfismo en acción: cada objeto responde según su propia implementación
+# Polimorfismo en acción: cada objeto llama a su propia versión de acelerar()
 for v in vehiculos:
+    # Se imprime la información del vehículo junto con su forma de acelerar
     print(v.obtener_info(), "-", v.acelerar())
+
